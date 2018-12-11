@@ -1821,7 +1821,12 @@ var PptxGenJS = function(){
 				}
 			}
 			else {
-				zip.generateAsync({type:'blob'}).then(function(content){ writeFileToBrowser(strExportName, content); });
+				// zip.generateAsync({type:'blob'}).then(function(content){ writeFileToBrowser(strExportName, content); });
+				zip.generateAsync({type:'blob'})
+				.then(function(content){
+					gObjPptx.saveCallback(content);
+					// writeFileToBrowser(strExportName, content);
+				});
 			}
 		})
 		.catch(function(strErr){
